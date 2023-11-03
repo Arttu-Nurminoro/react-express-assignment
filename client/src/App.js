@@ -5,20 +5,22 @@ import Table from 'react-bootstrap/Table';
 
 function App() {
   const [data, setData] = useState([]);
-  const jokuhomma = {
-    price:"",
-    startDate:"",
-    endDate:""
-  }
-  var yeer = 1;
+
   useEffect(() => {
     fetch('http://localhost:5000/get_prices', {mode:'cors'})
     .then(res => res.json())
     .then(data => {
-      data.forEach(e => {
-        
+      data.prices.forEach(e => { //joku nopee homma et kaikki date stringit läpi ettei oo nii surkeit
+        var start = e.startDate;
+        var end = e.endDate;
+        start = start.slice(0,16);
+        start = start.replace("T", " ");
+        end = end.slice(0,16);
+        end = end.replace("T", " ");
+        e.startDate = start;
+        e.endDate = end;
       });
-      setData(data.prices); //jotai uutta
+      setData(data.prices); 
       console.log(data);
     })
     .catch(err => console.log(err));
