@@ -11,14 +11,8 @@ function App() {
     .then(res => res.json())
     .then(data => {
       data.prices.forEach(e => { //joku nopee homma et kaikki date stringit läpi ettei oo nii surkeit
-        var start = e.startDate;
-        var end = e.endDate;
-        start = start.slice(0,16);
-        start = start.replace("T", " ");
-        end = end.slice(0,16);
-        end = end.replace("T", " ");
-        e.startDate = start;
-        e.endDate = end;
+        e.startDate = e.startDate.slice(0,16).replace("T", " ");
+        e.endDate = e.endDate.slice(0,16).replace("T"," ");
       });
       setData(data.prices); 
       console.log(data);
