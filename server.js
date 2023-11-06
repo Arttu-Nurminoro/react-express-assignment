@@ -13,11 +13,7 @@ app.get('/get_prices', async function(req,res) {
       'Content-Type': 'application/json'
     }
   };
-  fetch(url,options)
-  .then(res => res.json())
-  .then(json => console.log(json))
-  .catch(error => console.log(error));
-
+  
   try {
     let response = await fetch(url,options);
     response = await response.json();
